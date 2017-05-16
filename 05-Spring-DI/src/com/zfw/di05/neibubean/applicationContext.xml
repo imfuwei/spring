@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="student" class="com.zfw.di05.neibubean.Student">
+		<property name="name" value="zhangsan" />
+		<property name="age" value="12" />
+		
+		<property name="school">
+			<!-- 内部bean调用 ,不想在代码中直接使用getBean，可以在容器中配置无名的bean被别的bean引用-->
+			<bean class="com.zfw.di05.neibubean.School">
+				<property name="name" value="杭科院" />
+			</bean>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 目标对象 -->
+	<bean id="someService" class="com.zfw.aop1.MethodBeforeAdvice.SomeServiceImp" />
+	<!-- 注册通知：前置通知 -->
+	<bean id="beforeAdvice" class="com.zfw.aop1.MethodBeforeAdvice.MyMethodBeforeAdvice" />
+	
+	<!-- 代理对象的生成：注意这里的ProxyFactoryBean不是代理类，而是代理对象生成器-->
+	<bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="someService"/>
+		<!-- 可以不写该接口，因为ProxyFactoryBean默认会自动检测到目标类所实现的所有接口 -->
+		<!-- <property name="interfaces" value="com.zfw.service.ISomeService"/> -->
+		<property name="interceptorNames" value="beforeAdvice"/>
+	</bean>
+	
+</beans>

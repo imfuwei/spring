@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- bean传统装配 -->
+	<bean id="userServiceImp" class="com.zfw.service.UserServiceImp" />
+	<!-- 使用工厂方式，通过容器把工厂当做bean来创建工厂对象，然后由工厂来创建bean对象 -->
+	<bean id="ServiceFactory" class="com.zfw.service.ServiceFactory" />
+	<!-- 可以通过工厂bean来工厂方法来创建目标bean -->
+	<bean id="userServiceImp_Factory" factory-bean="ServiceFactory"
+		factory-method="getUserservice" />
+	<!-- 通过静态工厂bean的方法来创建目标对象，由于静态方法不需要类的实例化，所以直接通过容器的工厂方法来创建目标bean -->
+	<bean id="userServiceImp_Factory_Static" class="com.zfw.service.ServiceFactory"
+		factory-method="getUserservice_static" />
+</beans>

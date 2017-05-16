@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 如果在bean中有几个属性，其值是相同的，我们可以使用同类抽象bean来为那几个相同的属性来设值，让其他相同对象的bean来继承这个基础bean -->
+	<bean name="myBase" class="com.zfw.di06.tongleichouxiangbean.Student"
+		abstract="true">
+		<property name="school" value="杭科院" />
+		<property name="teacher" value="lihua" />
+	</bean>
+	<bean name="student1" class="com.zfw.di06.tongleichouxiangbean.Student"
+		parent="myBase">
+		<property name="name" value="张三" />
+		<property name="age" value="32" />
+	</bean>
+	<bean name="student2" class="com.zfw.di06.tongleichouxiangbean.Student"
+		parent="myBase">
+		<property name="name" value="李四" />
+		<property name="age" value="12" />
+	</bean>
+</beans>

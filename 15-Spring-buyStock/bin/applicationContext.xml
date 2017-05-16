@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${db.driverClass}" />
+		<property name="jdbcUrl" value="${db.url}" />
+		<property name="user" value="${db.user}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	
+	
+	<bean id="myDao" abstract="true">
+		<property name="dataSource" ref="myDataSource"/>
+	</bean>
+	<bean id="accountDao" class="com.zfw.dao.AccountDaoImpl" parent="myDao"/>
+	<bean id="stockDao" class="com.zfw.dao.StockDaoImpl" parent="myDao"/>
+	
+	<bean id="stockProcessService" class="com.zfw.service.StockProcessServiceImpl">
+		<property name="accountDao" ref="accountDao"/>
+		<property name="stockDao" ref="stockDao"/>
+	</bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!-- bean的作用域，
+        prototype原型模式，每执行一次getbean，就创建一个对象
+        singleton单例模式，整个Spring容器中就这一个实例 -->
+	<bean id="someService" class="com.zfw.service.SomeServiceImp" scope="prototype"/>
+</beans>

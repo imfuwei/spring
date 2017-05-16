@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="someService" class="com.zfw.service.livezhouqi.SomeServiceImp"
+		init-method="initPost" destroy-method="destroydingzhi" scope="singleton">
+		
+		<!-- 为bean属性设值，即调用bean的setter方法 -->
+		<property name="aa" value="张三" />
+	</bean>
+	<bean class="com.zfw.service.livezhouqi.MyBeanPostProcessor" />
+</beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="20-spring-hibernate-servlet"
+  id="myeclipse.1491812047894"
+  context-root="/20-spring-hibernate-servlet"
+  j2ee-spec="5.0"
+  archive="20-spring-hibernate-servlet.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 目标对象 -->
+	<bean id="someService1" class="com.zfw.aop7.DefaultAdvisorAutoProxyCreator.SomeServiceImp" />
+	<bean id="someService2" class="com.zfw.aop7.DefaultAdvisorAutoProxyCreator.SomeServiceImp" />
+	<!-- 通知：前置 -->
+	<bean id="beforeAdvice" class="com.zfw.aop7.DefaultAdvisorAutoProxyCreator.MyMethodBeforeAdvice" />
+	<!-- 通知：后置 -->
+	<bean id="afterReturningAdvice" class="com.zfw.aop7.DefaultAdvisorAutoProxyCreator.MyAfterReturningAdvice" />
+	<!-- 顾问 -->
+	<bean id="beforeAdvisor"
+		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="beforeAdvice" />
+		<property name="mappedNames" value="doSome" />
+	</bean>
+	<!--  代理对象的生成，不能解决多个对象的代理，可以使用自动代理生成器，增强每一个对象
+	<bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="someService" />
+		<property name="interfaces" value="com.zfw.aop7.autoAdvisor.ISomeService" />
+		<property name="interceptorNames" value="beforeAdvisor" />
+	</bean>
+	-->
+	
+	<!-- 自动代理生成器 ，底层是bean后处理器,所以不用id，容器在bean对象初始化前后，把顾问增强到方法中，但这种把所有对象都加顾问了，没办法为特定对象加顾问-->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+	
+</beans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!-- c命名空间构造注入，其实就是调用了有参构造器 -->
+	<bean name="student" class="com.zfw.di02.cnamespace.Student"
+		c:name="王五" c:age="32" c:school-ref="mySchool" />
+	<bean name="mySchool" class="com.zfw.di02.cnamespace.School">
+		<constructor-arg name="name" value="杭科院" />
+	</bean>
+</beans>

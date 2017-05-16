@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="student" class="com.zfw.di01.shezhi.Student">
+		<!-- 容器通过set方法，为bean属性设置注入 -->
+		<property name="name" value="zhangsan" />
+		<property name="age" value="12" />
+		<!-- 将引用类型的属性，通过引用，设值注入 -->
+		<property name="school" ref="mySchool"/>
+	</bean>
+	<bean name="mySchool" class="com.zfw.di01.shezhi.School">
+		<property name="name" value="杭科院" />
+	</bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--要想让destroy-method方法执行，第一，容器要关闭，第二：作用域为单例，即singleton-->
+	<bean id="someService1" class="com.zfw.service.dingzhi.SomeServiceImp"  init-method="initPost" destroy-method="destroy" scope="singleton"/>
+	<!-- bean后处理器 -->
+	<bean class="com.zfw.service.dingzhi.MyBeanPostProcessor"/>
+</beans>

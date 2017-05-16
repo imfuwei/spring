@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 构造注入，通过构造方法，为bean属性设值，几乎不用 -->
+	<bean name="student" class="com.zfw.di02.gouzao.Student">
+		<constructor-arg name="name" value="zhangsan" />
+		<constructor-arg name="age" value="12" />
+		<constructor-arg name="school" ref="mySchool" />
+		<!-- 也可以用index来为构造注入来设值，是构造方法中的参数的第几个 -->
+	<!-- <constructor-arg index="0" value="zhangsan" /> <constructor-arg index="1" 
+		value="12" /> <constructor-arg index="2" ref="mySchool" /> -->
+
+	</bean>
+	<bean name="mySchool" class="com.zfw.di02.gouzao.School">
+		<constructor-arg name="name" value="杭科院" />
+	</bean>
+</beans>

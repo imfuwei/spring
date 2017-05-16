@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 命名空间注入要在这加上此约束，可以在Spring文档中查找 xmlns:p="http://www.springframework.org/schema/p"-->
+	<!-- p命名空间设值注入，是能过set方法注入的 -->
+	<bean name="student" class="com.zfw.di01.pnamespace.Student" p:name="zhangsan" p:age="43" p:school-ref="mySchool"/>
+	<bean name="mySchool" class="com.zfw.di01.pnamespace.School">
+		<property name="name" value="杭科院" />
+	</bean>
+</beans>

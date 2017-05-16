@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- 目标对象 -->
+	<bean id="someService" class="com.zfw.aspectj01.SomeServiceImp" />
+
+	<!-- 切面 -->
+	<bean id="myAspect" class="com.zfw.aspectj01.MyAspect" />
+
+	<!-- AOP配置 -->
+	<aop:config>
+		<!-- 定义切入点 -->
+		<aop:pointcut expression="execution(* *..aspectj01.*.doSome(..))" id="doSomePoincut" />
+		<aop:pointcut expression="execution(* *..aspectj01.*.doSecond(..))" id="doSecondPoincut" />
+		<aop:pointcut expression="execution(* *..aspectj01.*.doThird(..))" id="doThirdPoincut" />
+		<aop:pointcut expression="execution(* *..aspectj01.*.doFour(..))" id="doFourPoincut" />
+		<!-- 切面 -->
+		<aop:aspect ref="myAspect">
+			<!-- 将无参的方法织入到切入点 -->
+			<aop:before method="myBefore" pointcut-ref="doSomePoincut" />
+			<!-- 将有参的方法织入到切入点 -->
+			<aop:before method="myBefore(org.aspectj.lang.JoinPoint)" pointcut-ref="doSomePoincut" />
+			
+			<!-- 后置通知，没有获取方法的返回值 ,织入到切入点-->
+			<aop:after-returning method="myAfterReturning" pointcut-ref="doSecondPoincut"/>
+			<!-- 后置通知，获取方法的返回值 ,织入到切入点-->
+			<aop:after-returning method="myAfterReturning(java.lang.Object)" pointcut-ref="doSecondPoincut" returning="result"/>
+			
+			<!-- 环绕通知，织入到切入点-->
+			<aop:around method="myAround2" pointcut-ref="doSecondPoincut"/>
+			
+			<!-- 异常通知 -->
+			<aop:after-throwing method="myAfterThrowing" pointcut-ref="doFourPoincut"/>
+			<aop:after-throwing method="myAfterThrowing(java.lang.Exception)" pointcut-ref="doFourPoincut" throwing="ex"/>
+			
+			<!-- 最终通知 -->
+			<aop:after method="myAfter" pointcut-ref="doFourPoincut"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

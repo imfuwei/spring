@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean name="mySchool1" class="com.zfw.di03.jihe.School">
+		<property name="name" value="杭科院" />
+	</bean>
+	<bean name="mySchool2" class="com.zfw.di03.jihe.School">
+		<property name="name" value="科职院" />
+	</bean>
+
+
+	<bean name="some" class="com.zfw.di03.jihe.Some">
+		<!-- 为数组属性设值注入 -->
+		<property name="names">
+			<array>
+				<value>zhangsan</value>
+				<value>lisi</value>
+			</array>
+		</property>
+		<!-- 为list属性设值注入 -->
+		<property name="schools">
+			<list>
+				<ref bean="mySchool1" />
+				<ref bean="mySchool2" />
+			</list>
+		</property>
+		<!-- 为set属性设值注入 -->
+		<property name="mySets">
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+			</set>
+		</property>
+		<!-- 为map属性设值注入 -->
+		<property name="myMap">
+			<map>
+				<entry key="w" value="200px" />
+				<entry key="h" value="1000px" />
+			</map>
+		</property>
+		<!-- 为 Properties 注入值 -->
+		<property name="myproperties">
+			<props>
+				<prop key="driver">com.mysql.jdbc.Driver</prop>
+				<prop key="uri">jdbc:mysql://localhost:8080/zfw</prop>
+				<prop key="username">root</prop>
+				<prop key="password"></prop>
+			</props>
+		</property>
+
+
+	</bean>
+
+</beans>
